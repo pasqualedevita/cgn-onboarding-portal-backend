@@ -46,6 +46,15 @@ steps:
       goals: 'package'
       sonarQubeRunAnalysis: true
 
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        ls -la target/surefire-reports
+        # cat target/surefire-reports/TEST-it.gov.pagopa.reminder.MessageKafkaConsumerTest.xml
+        # cat target/surefire-reports/TEST-it.gov.pagopa.reminder.MockSchedulerDeleteIntegrationTest.xml
+        # cat target/surefire-reports/TEST-it.gov.pagopa.reminder.MockSchedulerNotifyIntegrationTest.xml
+
   - task: SonarCloudPublish@1
     displayName: 'Publish SonarCloud results on build summary'
     inputs:
